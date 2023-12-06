@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>BisBattle</title>
+    <title>BisBisBattle</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,7 +33,7 @@
         <div class="border" :style="{margin: '20px'}">
             <img src="./player.png" alt="Player" height="120" width="100">
             <p>Vie du joueur: {{viePlayer}}PV</p>
-            <div :style="{height: '20px', width: viePlayer+'px', backgroundColor:'chartreuse', margin: '0 auto'}" >
+            <div :style="{height: '20px', width: viePlayer+'px', backgroundColor: colorViePlayer, margin: '0 auto'}" >
                 
             </div>
         </div>
@@ -41,7 +41,7 @@
         <div class="border" :style="{margin: '20px'}">
             <img src="./ennemi.png" alt="Da ennemi" height="100" width="120">
             <p>Vie de l'adversaire: {{vieAdversaire}}PV</p>
-            <div :style="{height: '20px', width: vieAdversaire+'px', backgroundColor:'chartreuse', margin: '0 auto'}" >
+            <div :style="{height: '20px', width: vieAdversaire+'px', backgroundColor: colorVieAdversaire, margin: '0 auto'}" >
                 
             </div>
         </div>
@@ -58,7 +58,9 @@
 
     <div class="border" :style="{margin: '20px'}">
         <h3>Messages de jeu:</h3>
-        
+        <ul>
+            <li v-for="(text,unIndex) in listMsg" v-bind:key="text">{{text}}</li>
+        </ul>
     </div>
 
     <!-- script pour contacter VUE -->
