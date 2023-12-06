@@ -16,11 +16,13 @@ Vue.createApp({
     },
     methods: {
         attackPlayer() {
-            this.viePlayer -= 20;
+            let attack = Math.random() * (30 - 20) + 20;
+            this.viePlayer -= Math.floor(attack);
         },
 
         attackAdversaire() {
-            this.vieAdversaire -= 15;
+            let attack2 = Math.random() * (20 - 10) + 10;
+            this.vieAdversaire -= Math.floor(attack2);
             this.attackPlayer();
             this.currentround += 1;
             this.specialReady();
@@ -30,7 +32,8 @@ Vue.createApp({
 
         specialAttackAdversaire() {
             if(this.readyTour == true) {
-                this.vieAdversaire -= 30;
+                let attackSpe = Math.random() * (30 - 20) + 20;
+                this.vieAdversaire -= Math.floor(attackSpe);
                 this.attackPlayer();
                 this.currentround += 1;
                 this.readyTour = false;
@@ -53,8 +56,9 @@ Vue.createApp({
         },
 
         soinPlayer() {
+            let health = Math.random() * (40 - 25) + 25;
             if(this.viePlayer < 100) {
-                this.viePlayer += 30;
+                this.viePlayer += Math.floor(health);
                 this.attackPlayer();
                 this.currentround += 1;
                 this.specialReady();
