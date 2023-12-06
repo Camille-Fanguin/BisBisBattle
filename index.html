@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>BisBattle</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS v5.2.0-beta1 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <style>
+        .Available {
+            background-color: rgb(255, 188, 2);
+        }
+        .AvailableHeal {
+            background-color: rgb(12, 197, 12);;
+        }
+        .None {
+            background-color: dimgray;
+        }
+    </style>
+
+    </head>
+
+<body id="app">
+    <div class="text-center">
+        <h1>Duel</h1>
+        <h2>Tour {{currentround}}</h2>
+
+        
+        <div class="border">
+            <img src="./player.png" alt="Player" height="120" width="100">
+            <p>Vie du joueur: {{viePlayer}}PV</p>
+            <div :style="{height: '20px', width: viePlayer+'px', backgroundColor:'chartreuse', margin: '0 auto'}" >
+                
+            </div>
+        </div>
+        
+        
+        <div class="border">
+            <img src="./ennemi.png" alt="Da ennemi" height="100" width="120">
+            <p>Vie de l'adversaire: {{vieAdversaire}}PV</p>
+            <div :style="{height: '20px', width: vieAdversaire+'px', backgroundColor:'chartreuse', margin: '0 auto'}" >
+                
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center" :style="{margin: '20px'}">
+            <button class="btn btn-danger" :style="{margin: '20px'}" v-on:click="attackAdversaire()" :disabled="stopGame">Attaquer</button>
+            <button class="btn btn-secondary" :style="{margin: '20px'}" v-on:click="specialAttackAdversaire()" v-bind:class="{Available: readyTour, None: false}" :disabled="stopGame">Attaque spéciale</button>
+            <button class="btn btn-secondary" :style="{margin: '20px'}" v-on:click="soinPlayer()" v-bind:class="{AvailableHeal: readySoin, None: false}" :disabled="stopGame">Se Soigner</button>
+            <button class="btn btn-primary" :style="{margin: '20px'}" v-on:click="givingUp()" :disabled="stopGame">Abandonner</button>
+        </div>
+
+        <h2>{{result}}</h2>
+
+    </div>
+
+
+
+    <!-- script pour contacter VUE -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="app.js"></script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
