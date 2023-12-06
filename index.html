@@ -15,7 +15,7 @@
             background-color: rgb(255, 188, 2);
         }
         .AvailableHeal {
-            background-color: rgb(12, 197, 12);;
+            background-color: rgb(12, 197, 12);
         }
         .None {
             background-color: dimgray;
@@ -27,12 +27,13 @@
 <body id="app">
     <div class="text-center">
         <h1><em>BisBisBattle</em></h1>
+        <h2>{{result}}</h2>
         <h2>Tour {{currentround}}</h2>
 
         
         <div class="border" :style="{margin: '20px'}">
             <img src="./player.png" alt="Player" height="120" width="100">
-            <p>Vie du joueur: {{viePlayer}}PV</p>
+            <p>Anubis: {{viePlayer}}PV</p>
             <div :style="{height: '20px', width: viePlayer+'px', backgroundColor: colorViePlayer, margin: '0 auto'}" >
                 
             </div>
@@ -40,7 +41,7 @@
         
         <div class="border" :style="{margin: '20px'}">
             <img src="./ennemi.png" alt="Da ennemi" height="100" width="120">
-            <p>Vie de l'adversaire: {{vieAdversaire}}PV</p>
+            <p>Ennemi: {{vieAdversaire}}PV</p>
             <div :style="{height: '20px', width: vieAdversaire+'px', backgroundColor: colorVieAdversaire, margin: '0 auto'}" >
                 
             </div>
@@ -53,7 +54,10 @@
             <button class="btn btn-primary" :style="{margin: '20px'}" v-on:click="givingUp()" :disabled="stopGame">Abandonner</button>
         </div>
 
-        <h2>{{result}}</h2>
+        <div>
+            <button class="btn btn-info" v-on:click="relancerGame()">Relancer une partie</button>
+        </div>
+
     </div>
 
     <div class="border" :style="{margin: '20px'}">

@@ -118,6 +118,8 @@ Vue.createApp({
         givingUp() {
             this.stopGame = true;
             this.result = 'ABANDON...'
+            this.msg = "Fin de game: Abandon";
+            this.addMsg();
         },
 
         addMsg() {
@@ -140,6 +142,20 @@ Vue.createApp({
             } else {
                 this.colorVieAdversaire = 'chartreuse';
             }
+        },
+
+        relancerGame() {
+            this.viePlayer = 250;
+            this.vieAdversaire = 250;
+            this.currentround = 0;
+            this.readySoin = false;
+            this.readyTour = false;
+            this.colorViePlayer = 'chartreuse';
+            this.colorVieAdversaire = 'chartreuse';
+            this.stopGame = false;
+            this.result = '';
+            this.listMsg = ['Nouvelle game'];
+
         }
     }
 }).mount('#app');
