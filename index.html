@@ -26,11 +26,11 @@
 
 <body id="app">
     <div class="text-center">
-        <h1>Duel</h1>
+        <h1><em>BisBisBattle</em></h1>
         <h2>Tour {{currentround}}</h2>
 
         
-        <div class="border">
+        <div class="border" :style="{margin: '20px'}">
             <img src="./player.png" alt="Player" height="120" width="100">
             <p>Vie du joueur: {{viePlayer}}PV</p>
             <div :style="{height: '20px', width: viePlayer+'px', backgroundColor:'chartreuse', margin: '0 auto'}" >
@@ -38,8 +38,7 @@
             </div>
         </div>
         
-        
-        <div class="border">
+        <div class="border" :style="{margin: '20px'}">
             <img src="./ennemi.png" alt="Da ennemi" height="100" width="120">
             <p>Vie de l'adversaire: {{vieAdversaire}}PV</p>
             <div :style="{height: '20px', width: vieAdversaire+'px', backgroundColor:'chartreuse', margin: '0 auto'}" >
@@ -55,10 +54,12 @@
         </div>
 
         <h2>{{result}}</h2>
-
     </div>
 
-
+    <div class="border" :style="{margin: '20px'}">
+        <h3>Messages de jeu:</h3>
+        
+    </div>
 
     <!-- script pour contacter VUE -->
     <script src="https://unpkg.com/vue@next"></script>
