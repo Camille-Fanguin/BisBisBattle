@@ -18,6 +18,8 @@ Vue.createApp({
             colorViePlayer: 'chartreuse',
             colorVieAdversaire: 'chartreuse',
 
+            win: 0,
+
         };
     },
     methods: {
@@ -104,6 +106,7 @@ Vue.createApp({
                 this.vieAdversaire = 0;
                 this.result = 'VICTOIRE!';
                 this.msg = "Fin de game: Victoire";
+                this.win += 1;
                 this.addMsg();
             } else if (this.viePlayer <= 0 && this.vieAdversaire <= 0) {
                 this.stopGame = true;
@@ -111,6 +114,7 @@ Vue.createApp({
                 this.vieAdversaire = 0;
                 this.result = "ÉGALITÉ"
                 this.msg = "Fin de game: Égalité";
+                this.win += 0.5;
                 this.addMsg();
             }
         },

@@ -29,6 +29,7 @@
         <h1><em>BisBisBattle</em></h1>
         <h2>{{result}}</h2>
         <h2>Tour {{currentround}}</h2>
+        <p>Victory: {{win}}</p>
 
         
         <div class="border" :style="{margin: '20px'}">
@@ -55,7 +56,7 @@
         </div>
 
         <div>
-            <button class="btn btn-info" v-on:click="relancerGame()">Relancer une partie</button>
+            <button class="btn btn-dark" v-on:click="relancerGame()">Relancer une partie</button>
         </div>
 
     </div>
