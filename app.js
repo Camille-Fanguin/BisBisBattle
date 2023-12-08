@@ -20,7 +20,7 @@ Vue.createApp({
 
             win: 0,
 
-            img: './spin.gif',
+            img: './img/spin.gif',
             nomImg: 'Rien',
 
         };
@@ -178,6 +178,7 @@ Vue.createApp({
 
         //relancerGame: lancement d'une nouvelle game
         relancerGame() {
+            this.viePlayer = 250;
             this.currentround = 0;
             this.readySoin = false;
             this.readyTour = false;
@@ -196,22 +197,22 @@ Vue.createApp({
             console.log(random);
             switch(random) {
                 case 1:
-                    this.img='./ennemi.png';
+                    this.img='./img/ennemi.png';
                     this.nomImg='TumNuk';
                     this.vieAdversaire=250;
                     break;
                 case 2:
-                    this.img='./ennemi2.jpg';
+                    this.img='./img/ennemi2.jpg';
                     this.nomImg='Whistle';
                     this.vieAdversaire=360;
                     break;
                 case 3:
-                    this.img='./kirby.jpg';
+                    this.img='./img/kirby.jpg';
                     this.nomImg='Kirby armé';
                     this.vieAdversaire=150;
                     break;
                 default:
-                    this.img='./player.png';
+                    this.img='./img/player.png';
                     this.nomImg='BisBoss';
                     break;
             }
