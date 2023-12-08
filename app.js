@@ -2,7 +2,7 @@ Vue.createApp({
     data() {
         return {
             viePlayer: 250,
-            vieAdversaire: 250,
+            vieAdversaire: 0,
 
             currentround: 0,
 
@@ -10,15 +10,18 @@ Vue.createApp({
             readySoin: false,
 
             result: '',
-            stopGame: false,
+            stopGame: true,
 
-            listMsg: ['Début de game'],
+            listMsg: ['Bienvenue!'],
             msg: '',
 
             colorViePlayer: 'chartreuse',
             colorVieAdversaire: 'chartreuse',
 
             win: 0,
+
+            img: './spin.gif',
+            nomImg: 'Rien',
 
         };
     },
@@ -159,7 +162,36 @@ Vue.createApp({
             this.stopGame = false;
             this.result = '';
             this.listMsg = ['Nouvelle game'];
+            this.randomEnnemi();
 
+        },
+
+        randomEnnemi() {
+            let random = Math.floor(Math.random()*3)+1;
+            console.log(random);
+            switch(random) {
+                case 1:
+                    this.img='./ennemi.png';
+                    this.nomImg='TumNuk';
+                    this.vieAdversaire=250;
+                    break;
+                case 2:
+                    this.img='./ennemi2.jpg';
+                    this.nomImg='Whistle';
+                    this.vieAdversaire=360;
+                    break;
+                case 3:
+                    this.img='./kirby.jpg';
+                    this.nomImg='Kirby armé';
+                    this.vieAdversaire=150;
+                    break;
+                default:
+                    this.img='./player.png';
+                    this.nomImg='BisBoss';
+                    break;
+            }
+            this.msg = this.nomImg + " veut se battre!";
+            this.addMsg();
         }
     }
 }).mount('#app');
