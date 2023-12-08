@@ -26,6 +26,8 @@ Vue.createApp({
         };
     },
     methods: {
+        //attackPlayer: attaque de l'adversaire sur Anubis
+        //dégâts compris entre 20 & 30 PV
         attackPlayer() {
             let attack = Math.random() * (30 - 20) + 20;
             attack = Math.floor(attack);
@@ -34,6 +36,8 @@ Vue.createApp({
             this.addMsg(); 
         },
 
+        //attackAdversaire: attaque d'Anubis sur l'adversaire
+        //dégâts compris entre 10 & 20 PV
         attackAdversaire() {
             let attack2 = Math.random() * (20 - 10) + 10;
             attack2 = Math.floor(attack2);
@@ -48,6 +52,9 @@ Vue.createApp({
             this.verifyVie();
         },
 
+        //specialAttackAdversaire: attaque spécial d'Anubis
+        //SI readyTour est vrai
+        //dégâts compris entre 20 & 30 PV
         specialAttackAdversaire() {
             if(this.readyTour == true) {
                 let attackSpe = Math.random() * (30 - 20) + 20;
@@ -63,6 +70,8 @@ Vue.createApp({
             }
         },
 
+        //specialReady: vérification de la validité de l'utilisation du spécial d'Anubis
+        // SI 3 tours sont passés (modulo 3)
         specialReady() {
             if (this.currentround %3 == 0) {
                 this.readyTour = true;
@@ -71,6 +80,27 @@ Vue.createApp({
             }
         },
 
+        //soinPlayer: regain de vie pour Anubis
+        //SI readySoin est vrai
+        //regain de vie compris entre 25 & 40 PV
+        soinPlayer() {
+            let health = Math.random() * (40 - 25) + 25;
+            if(this.readySoin == true) {
+                health = Math.floor(health);
+                this.viePlayer += health;
+                this.msg = "Anubis vient de se soigner! Elle regagne " + health + "PV!";
+                this.addMsg();
+                this.attackPlayer();
+                this.currentround += 1;
+                this.specialReady();
+                this.readySoin = false;
+                this.lifeBar();
+                this.verifyVie();
+            }
+        },
+
+        //soinReady: vérification de la validité de l'utilisation du soin par Anubis
+        //SI la vie d'Anubis est en dessous de 100 PV
         soinReady() {
             if (this.viePlayer < 100) {
                 this.readySoin = true;
@@ -81,22 +111,33 @@ Vue.createApp({
             }
         },
 
-        soinPlayer() {
-            let health = Math.random() * (40 - 25) + 25;
-            if(this.viePlayer < 100) {
-                health = Math.floor(health);
-                this.viePlayer += health;
-                this.msg = "Anubis vient de se soigner! Elle regagne " + health + "PV!";
-                this.addMsg();
-                this.attackPlayer();
-                this.currentround += 1;
-                this.specialReady();
-                this.soinReady();
-                this.lifeBar();
-                this.verifyVie();
+        //lifeBar: colorisation de la barre de vie en fonction des PV
+        //disponible pour Anubis et pour l'adversaire
+        //SI la vie est en dessous de 100 PV MAIS est au dessus de 25 PV -> orange
+        //SI la vie est en dessous de 25 PV -> rouge critique
+        //SINON -> chartreuse (hehe)
+        lifeBar() {
+            if(this.viePlayer < 100 && this.viePlayer > 25) {
+                this.colorViePlayer = 'orange';
+            } else if (this.viePlayer < 25) {
+                this.colorViePlayer = 'red';
+            } else {
+                this.colorViePlayer = 'chartreuse';
+            }
+
+            if(this.vieAdversaire < 100 && this.vieAdversaire > 25) {
+                this.colorVieAdversaire = 'orange';
+            } else if (this.vieAdversaire < 25) {
+                this.colorVieAdversaire = 'red';
+            } else {
+                this.colorVieAdversaire = 'chartreuse';
             }
         },
 
+        //verifyVie: vérification de si soit Anubis soit l'adversaire est mort
+        //SI Anubis est à 0 PV ET pas l'adversaire -> Défaite
+        //SI l'adversaire est à 0 PV ET pas Anubis -> Victoire
+        //SI les 2 sont à 0 PV -> Égalité
         verifyVie() {
             if(this.viePlayer <= 0 && this.vieAdversaire > 0) {
                 this.stopGame = true;
@@ -122,6 +163,7 @@ Vue.createApp({
             }
         },
 
+        //givingUp: fin prématurée de la game par forfait
         givingUp() {
             this.stopGame = true;
             this.result = 'ABANDON...'
@@ -129,31 +171,13 @@ Vue.createApp({
             this.addMsg();
         },
 
+        //addMsg: ajout d'un message de jeu en fonction de l'action performée
         addMsg() {
             this.listMsg.unshift(this.msg);
         },
 
-        lifeBar() {
-            if(this.viePlayer < 100 && this.viePlayer > 25) {
-                this.colorViePlayer = 'orange';
-            } else if (this.viePlayer < 25) {
-                this.colorViePlayer = 'red';
-            } else {
-                this.colorViePlayer = 'chartreuse';
-            }
-
-            if(this.vieAdversaire < 100 && this.vieAdversaire > 25) {
-                this.colorVieAdversaire = 'orange';
-            } else if (this.vieAdversaire < 25) {
-                this.colorVieAdversaire = 'red';
-            } else {
-                this.colorVieAdversaire = 'chartreuse';
-            }
-        },
-
+        //relancerGame: lancement d'une nouvelle game
         relancerGame() {
-            this.viePlayer = 250;
-            this.vieAdversaire = 250;
             this.currentround = 0;
             this.readySoin = false;
             this.readyTour = false;
@@ -166,6 +190,7 @@ Vue.createApp({
 
         },
 
+        //randomEnnemi: choix d'un ennemi random sur le terrain
         randomEnnemi() {
             let random = Math.floor(Math.random()*3)+1;
             console.log(random);
