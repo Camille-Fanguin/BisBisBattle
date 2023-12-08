@@ -198,18 +198,18 @@ Vue.createApp({
             switch(random) {
                 case 1:
                     this.img='./img/ennemi.png';
-                    this.nomImg='TumNuk';
-                    this.vieAdversaire=250;
+                    this.nomImg='Emerise';
+                    this.vieAdversaire=100;
                     break;
                 case 2:
                     this.img='./img/ennemi2.jpg';
                     this.nomImg='Whistle';
-                    this.vieAdversaire=360;
+                    this.vieAdversaire=250;
                     break;
                 case 3:
                     this.img='./img/kirby.jpg';
                     this.nomImg='Kirby armé';
-                    this.vieAdversaire=150;
+                    this.vieAdversaire=360;
                     break;
                 default:
                     this.img='./img/player.png';
