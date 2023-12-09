@@ -65,6 +65,7 @@ Vue.createApp({
                 this.attackPlayer();
                 this.currentround += 1;
                 this.readyTour = false;
+                this.soinReady();
                 this.lifeBar();
                 this.verifyVie();
             }
@@ -93,7 +94,7 @@ Vue.createApp({
                 this.attackPlayer();
                 this.currentround += 1;
                 this.specialReady();
-                this.readySoin = false;
+                this.soinReady();
                 this.lifeBar();
                 this.verifyVie();
             }
@@ -143,13 +144,13 @@ Vue.createApp({
                 this.stopGame = true;
                 this.viePlayer = 0;
                 this.result = 'PERDU..';
-                this.msg = "Fin de game: Défaite";
+                this.msg = "> Fin de game: Défaite <";
                 this.addMsg();
             } else if (this.vieAdversaire <= 0 && this.viePlayer > 0) {
                 this.stopGame = true;
                 this.vieAdversaire = 0;
                 this.result = 'VICTOIRE!';
-                this.msg = "Fin de game: Victoire";
+                this.msg = "> Fin de game: Victoire <";
                 this.win += 1;
                 this.addMsg();
             } else if (this.viePlayer <= 0 && this.vieAdversaire <= 0) {
@@ -157,7 +158,7 @@ Vue.createApp({
                 this.viePlayer = 0;
                 this.vieAdversaire = 0;
                 this.result = "ÉGALITÉ"
-                this.msg = "Fin de game: Égalité";
+                this.msg = "> Fin de game: Égalité <";
                 this.win += 0.5;
                 this.addMsg();
             }
@@ -167,7 +168,7 @@ Vue.createApp({
         givingUp() {
             this.stopGame = true;
             this.result = 'ABANDON...'
-            this.msg = "Fin de game: Abandon";
+            this.msg = "> Fin de game: Abandon <";
             this.addMsg();
         },
 
@@ -186,7 +187,7 @@ Vue.createApp({
             this.colorVieAdversaire = 'chartreuse';
             this.stopGame = false;
             this.result = '';
-            this.listMsg = ['Nouvelle game'];
+            this.listMsg = ['> Nouvelle game <'];
             this.randomEnnemi();
 
         },
@@ -199,7 +200,7 @@ Vue.createApp({
                 case 1:
                     this.img='./img/ennemi.png';
                     this.nomImg='Emerise';
-                    this.vieAdversaire=100;
+                    this.vieAdversaire=120;
                     break;
                 case 2:
                     this.img='./img/ennemi2.jpg';
