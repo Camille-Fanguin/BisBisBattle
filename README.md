@@ -1,3 +1,3 @@
 # BisBisBattle
-Pokemon like en Vue JS
-featuring Anubis
+
+Petit jeu en Vue.js featuring Anubis
