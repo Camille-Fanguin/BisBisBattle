@@ -149,13 +149,16 @@ Vue.createApp({
                 this.stopGame = true;
                 this.viePlayer = 0;
                 this.playerImg = './img/ded.png';
+                this.battleSound('defeat');
                 this.result = 'PERDU..';
                 this.msg = "> Fin de game: Défaite <";
                 this.addMsg();
             } else if (this.vieAdversaire <= 0 && this.viePlayer > 0) {
                 this.stopGame = true;
                 this.vieAdversaire = 0;
+                this.img = './img/ded.png';
                 this.playerImg = './img/spin.gif';
+                this.battleSound('victory');
                 this.result = 'VICTOIRE!';
                 this.msg = "> Fin de game: Victoire <";
                 this.win += 1;
@@ -196,7 +199,6 @@ Vue.createApp({
             this.playerImg = './img/player.png';
             this.result = '';
             this.listMsg = ['> Nouvelle game <'];
-            this.battleMusic('battle');
             this.randomEnnemi();
 
         },
@@ -266,6 +268,14 @@ Vue.createApp({
                             sound.src = './sound/heal2.mp3';
                             break;
                     }
+                    break;
+                case 'victory':
+                    sound.volume = 0.35;
+                    sound.src = './sound/victory.mp3';
+                    break;
+                case 'defeat':
+                    sound.volume = 0.35;
+                    sound.src = './sound/lose.mp3';
                     break;
                 default:
                     sound.pause();
