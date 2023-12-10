@@ -20,8 +20,10 @@ Vue.createApp({
 
             win: 0,
 
-            img: './img/spin.gif',
+            img: './img/rien.png',
             nomImg: 'Rien',
+
+            playerImg: './img/player.png'
 
         };
     },
@@ -44,6 +46,7 @@ Vue.createApp({
             this.vieAdversaire -= attack2;
             this.msg = "L'ennemi se prend " + attack2 + " points de dégâts!";
             this.addMsg();
+            this.battleSound('attack');
             this.attackPlayer();
             this.currentround += 1;
             this.specialReady();
@@ -62,6 +65,7 @@ Vue.createApp({
                 this.vieAdversaire -= attackSpe;
                 this.msg = "L'ennemi se prend d'énormes dégâts! Il perd " + attackSpe + "PV!";
                 this.addMsg();
+                this.battleSound('special');
                 this.attackPlayer();
                 this.currentround += 1;
                 this.readyTour = false;
@@ -91,6 +95,7 @@ Vue.createApp({
                 this.viePlayer += health;
                 this.msg = "Anubis vient de se soigner! Elle regagne " + health + "PV!";
                 this.addMsg();
+                this.battleSound('heal');
                 this.attackPlayer();
                 this.currentround += 1;
                 this.specialReady();
@@ -143,12 +148,14 @@ Vue.createApp({
             if(this.viePlayer <= 0 && this.vieAdversaire > 0) {
                 this.stopGame = true;
                 this.viePlayer = 0;
+                this.playerImg = './img/ded.png';
                 this.result = 'PERDU..';
                 this.msg = "> Fin de game: Défaite <";
                 this.addMsg();
             } else if (this.vieAdversaire <= 0 && this.viePlayer > 0) {
                 this.stopGame = true;
                 this.vieAdversaire = 0;
+                this.playerImg = './img/spin.gif';
                 this.result = 'VICTOIRE!';
                 this.msg = "> Fin de game: Victoire <";
                 this.win += 1;
@@ -186,6 +193,7 @@ Vue.createApp({
             this.colorViePlayer = 'chartreuse';
             this.colorVieAdversaire = 'chartreuse';
             this.stopGame = false;
+            this.playerImg = './img/player.png';
             this.result = '';
             this.listMsg = ['> Nouvelle game <'];
             this.randomEnnemi();
@@ -195,7 +203,6 @@ Vue.createApp({
         //randomEnnemi: choix d'un ennemi random sur le terrain
         randomEnnemi() {
             let random = Math.floor(Math.random()*3)+1;
-            console.log(random);
             switch(random) {
                 case 1:
                     this.img='./img/ennemi.png';
@@ -219,6 +226,51 @@ Vue.createApp({
             }
             this.msg = this.nomImg + " veut se battre!";
             this.addMsg();
-        }
+        },
+
+        //battleSound(event): lance un sound effect en fonction de l'évènement
+        battleSound(event) {
+            let sound = new Audio('');
+            sound.volume = 0.1;
+            switch(event) {
+                case 'attack': 
+                    let randomAttack = Math.floor(Math.random()*2)+1;
+                    switch(randomAttack) {
+                        case 1:
+                            sound.src = './sound/punch1.mp3';
+                            break;
+                        case 2:
+                            sound.src = './sound/punch2.mp3';
+                            break;
+                    }
+                    break;
+                case 'special': 
+                    let randomSpecial = Math.floor(Math.random()*2)+1;
+                    switch(randomSpecial) {
+                        case 1:
+                            sound.src = './sound/special1.mp3';
+                            break;
+                        case 2:
+                            sound.src= './sound/special2.mp3';
+                            break;
+                    }
+                    break;
+                case 'heal': 
+                    let randomHealing = Math.floor(Math.random()*2)+1;
+                    switch(randomHealing) {
+                        case 1:
+                            sound.src = './sound/heal1.mp3';
+                            break;
+                        case 2:
+                            sound.src = './sound/heal2.mp3';
+                            break;
+                    }
+                    break;
+                default:
+                    sound.pause();
+                    break;
+            }
+            sound.play();
+        },
     }
 }).mount('#app');
