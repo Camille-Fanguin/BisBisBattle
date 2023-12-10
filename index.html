@@ -29,9 +29,17 @@
     <div class="text-center">
         <img src="./img/title.png" alt='BisBisBattle' height="70" width="300">
         <h2>{{result}}</h2>
-        <h2>Tour {{currentround}}</h2>
-        <p>Victory: {{win}}</p>
-        <button class="btn btn-dark" v-on:click="relancerGame()">Lancer une game</button>
+        <div class="row">
+            <div class="col-sm">
+                <h2>Tour {{currentround}}</h2>     
+            </div>
+            <div class="col-sm">
+                <p v-if="win > 1">Points de victoire: {{win}}</p>
+                <p v-else>Point de victoire: {{win}}</p>
+            </div>
+        </div>
+        
+        <button class="btn btn-dark" v-on:click="relancerGame()">{{textLancer}}</button>
 
         <div class="border" :style="{margin: '50px'}">
             <img :src=img :alt=nomImg height="130" width="150">

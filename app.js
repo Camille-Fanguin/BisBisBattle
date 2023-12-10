@@ -23,7 +23,9 @@ Vue.createApp({
             img: './img/rien.png',
             nomImg: 'Rien',
 
-            playerImg: './img/player.png'
+            playerImg: './img/player.png',
+
+            textLancer: 'Lancer une game',
 
         };
     },
@@ -199,6 +201,7 @@ Vue.createApp({
             this.playerImg = './img/player.png';
             this.result = '';
             this.listMsg = ['> Nouvelle game <'];
+            this.textLancer = 'Relancer une game';
             this.randomEnnemi();
 
         },
