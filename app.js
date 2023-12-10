@@ -169,6 +169,7 @@ Vue.createApp({
                 this.stopGame = true;
                 this.viePlayer = 0;
                 this.vieAdversaire = 0;
+                this.battleSound('draw');
                 this.result = "ÉGALITÉ"
                 this.msg = "> Fin de game: Égalité <";
                 this.win += 0.5;
@@ -179,6 +180,9 @@ Vue.createApp({
         //givingUp: fin prématurée de la game par forfait
         givingUp() {
             this.stopGame = true;
+            this.battleSound('giveUp');
+            this.playerImg = './img/ded.png';
+            this.viePlayer = 0;
             this.result = 'ABANDON...'
             this.msg = "> Fin de game: Abandon <";
             this.addMsg();
@@ -214,21 +218,22 @@ Vue.createApp({
                 case 1:
                     this.img='./img/ennemi.png';
                     this.nomImg='Emerise';
-                    this.vieAdversaire=120;
+                    this.vieAdversaire = 120;
                     break;
                 case 2:
                     this.img='./img/ennemi2.jpg';
                     this.nomImg='Whistle';
-                    this.vieAdversaire=250;
+                    this.vieAdversaire = 250;
                     break;
                 case 3:
                     this.img='./img/kirby.jpg';
                     this.nomImg='Kirby armé';
-                    this.vieAdversaire=360;
+                    this.vieAdversaire = 360;
                     break;
                 default:
                     this.img='./img/player.png';
                     this.nomImg='BisBoss';
+                    this.vieAdversaire = 9999;
                     break;
             }
             this.msg = this.nomImg + " veut se battre!";
@@ -280,6 +285,14 @@ Vue.createApp({
                 case 'defeat':
                     sound.volume = 0.3;
                     sound.src = './sound/lose.mp3';
+                    break;
+                case 'draw':
+                    sound.volume = 0.3;
+                    sound.src = './sound/draw.mp3';
+                    break;
+                case 'giveUp':
+                    sound.volume = 0.3;
+                    sound.src = './sound/giveUp.mp3';
                     break;
                 case 'reGame':
                     sound.src = './sound/reGame.mp3';
