@@ -196,6 +196,7 @@ Vue.createApp({
             this.playerImg = './img/player.png';
             this.result = '';
             this.listMsg = ['> Nouvelle game <'];
+            this.battleMusic('battle');
             this.randomEnnemi();
 
         },
@@ -272,5 +273,6 @@ Vue.createApp({
             }
             sound.play();
         },
+
     }
 }).mount('#app');
