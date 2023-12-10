@@ -202,6 +202,7 @@ Vue.createApp({
             this.result = '';
             this.listMsg = ['> Nouvelle game <'];
             this.textLancer = 'Relancer une game';
+            this.battleSound('reGame');
             this.randomEnnemi();
 
         },
@@ -234,7 +235,7 @@ Vue.createApp({
             this.addMsg();
         },
 
-        //battleSound(event): lance un sound effect en fonction de l'évènement
+        //battleSound(event): joue un sound effect en fonction de l'évènement
         battleSound(event) {
             let sound = new Audio('');
             sound.volume = 0.1;
@@ -273,12 +274,15 @@ Vue.createApp({
                     }
                     break;
                 case 'victory':
-                    sound.volume = 0.35;
+                    sound.volume = 0.3;
                     sound.src = './sound/victory.mp3';
                     break;
                 case 'defeat':
-                    sound.volume = 0.35;
+                    sound.volume = 0.3;
                     sound.src = './sound/lose.mp3';
+                    break;
+                case 'reGame':
+                    sound.src = './sound/reGame.mp3';
                     break;
                 default:
                     sound.pause();
