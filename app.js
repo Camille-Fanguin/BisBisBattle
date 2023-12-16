@@ -49,7 +49,7 @@ Vue.createApp({
             let attack2 = Math.random() * (20 - 10) + 10;
             attack2 = Math.floor(attack2);
             powerAttack2 = attack2 * (1+this.pwrAttack);
-            this.vieAdversaire -= powerAttack2;
+            this.vieAdversaire -= powerAttack2.toFixed(2);
             this.msg = "L'ennemi se prend " + powerAttack2.toFixed(2) + " points de dégâts!";
             this.addMsg();
             this.battleSound('attack');
