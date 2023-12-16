@@ -303,6 +303,10 @@ Vue.createApp({
                 case 'reGame':
                     sound.src = './sound/reGame.mp3';
                     break;
+                case 'addStat':
+                    sound.volume = 0.3;
+                    sound.src = './sound/addStat.mp3';
+                    break;
                 default:
                     sound.pause();
                     break;
@@ -317,6 +321,7 @@ Vue.createApp({
                 this.pwrAttack += 0.1;
                 this.win -= 1;
                 this.statAttack += 10;
+                this.battleSound('addStat');
                 this.msg = "L'attaque d'Anubis a augmenté de 10%!";
                 this.addMsg();
             } else {
