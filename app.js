@@ -169,6 +169,8 @@ Vue.createApp({
                 this.stopGame = true;
                 this.viePlayer = 0;
                 this.vieAdversaire = 0;
+                this.playerImg = './img/ded.png'
+                this.img = './img/ded.png';
                 this.battleSound('draw');
                 this.result = "ÉGALITÉ"
                 this.msg = "> Fin de game: Égalité <";
