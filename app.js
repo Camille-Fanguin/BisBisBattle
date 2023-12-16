@@ -28,7 +28,9 @@ Vue.createApp({
             textLancer: 'Lancer une game',
 
             pwrAttack: 0,
-            statAttack: 0
+            statAttack: 0,
+
+            healWait: 0
 
         };
     },
@@ -39,6 +41,7 @@ Vue.createApp({
             let attack = Math.random() * (30 - 20) + 20;
             attack = Math.floor(attack);
             this.viePlayer -= attack;
+            this.healWait += 1;
             this.msg = 'Anubis se prend ' + attack + ' points de dégâts!';
             this.addMsg(); 
         },
@@ -49,7 +52,7 @@ Vue.createApp({
             let attack2 = Math.random() * (20 - 10) + 10;
             attack2 = Math.floor(attack2);
             powerAttack2 = attack2 * (1+this.pwrAttack);
-            this.vieAdversaire -= powerAttack2.toFixed(2);
+            this.vieAdversaire -= powerAttack2;
             this.msg = "L'ennemi se prend " + powerAttack2.toFixed(2) + " points de dégâts!";
             this.addMsg();
             this.battleSound('attack');
@@ -114,8 +117,9 @@ Vue.createApp({
         //soinReady: vérification de la validité de l'utilisation du soin par Anubis
         //SI la vie d'Anubis est en dessous de 100 PV
         soinReady() {
-            if (this.viePlayer < 100) {
+            if (this.viePlayer < 100 && this.healWait >= 3) {
                 this.readySoin = true;
+                this.healWait = 0;
                 this.msg = "Le soin est prêt!";
                 this.addMsg();
             } else {
