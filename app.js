@@ -27,6 +27,9 @@ Vue.createApp({
 
             textLancer: 'Lancer une game',
 
+            pwrAttack: 0,
+            statAttack: 0
+
         };
     },
     methods: {
@@ -45,8 +48,9 @@ Vue.createApp({
         attackAdversaire() {
             let attack2 = Math.random() * (20 - 10) + 10;
             attack2 = Math.floor(attack2);
-            this.vieAdversaire -= attack2;
-            this.msg = "L'ennemi se prend " + attack2 + " points de dégâts!";
+            powerAttack2 = attack2 * (1+this.pwrAttack);
+            this.vieAdversaire -= powerAttack2;
+            this.msg = "L'ennemi se prend " + powerAttack2.toFixed(2) + " points de dégâts!";
             this.addMsg();
             this.battleSound('attack');
             this.attackPlayer();
@@ -305,6 +309,21 @@ Vue.createApp({
             }
             sound.play();
         },
+
+        //addAttackPower: ajoute 10% de dégâts supplémentaires sur l'attaque d'Anubis
+        //SI Anubis a au moins 1 point de victoires
+        addAttackPower() {
+            if(this.win >= 1) {
+                this.pwrAttack += 0.1;
+                this.win -= 1;
+                this.statAttack += 10;
+                this.msg = "L'attaque d'Anubis a augmenté de 10%!";
+                this.addMsg();
+            } else {
+                this.msg = "Anubis n'a pas gagné assez de point de victoire pour ça..";
+                this.addMsg();
+            }
+        }
 
     }
 }).mount('#app');

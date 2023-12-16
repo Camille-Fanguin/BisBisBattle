@@ -12,6 +12,10 @@
     <link rel="icon" type="image/x-icon" href="./img/spin.gif">
 
     <style>
+        body {
+            background-color: rgb(20, 20, 20);
+            color:aliceblue;
+        }
         .Available {
             background-color: rgb(255, 188, 2);
         }
@@ -34,7 +38,7 @@
                 <h2>Tour {{currentround}}</h2>     
             </div>
             <div class="col-sm">
-                <p>{{win >= 2 ? 'Points de victoires:':'Points de victoire:'}} {{win}}</p>
+                <p>{{win >= 2 ? 'Points de victoire:':'Point de victoire:'}} {{win}}</p>
             </div>
         </div>
         
@@ -42,7 +46,7 @@
 
         <div class="border" :style="{margin: '50px'}">
             <img :src=img :alt=nomImg height="130" width="150">
-            <p>{{nomImg}}: {{vieAdversaire}}</p>
+            <p>{{nomImg}}: {{vieAdversaire}}PV</p>
             <div :style="{height: '20px', width: vieAdversaire+'px', backgroundColor: colorVieAdversaire, margin: '0 auto'}" >
                 
             </div>
@@ -61,6 +65,34 @@
             <button class="btn btn-secondary" :style="{margin: '20px'}" v-on:click="specialAttackAdversaire()" v-bind:class="{Available: readyTour, None: false}" :disabled="stopGame">Attaque spéciale</button>
             <button class="btn btn-secondary" :style="{margin: '20px'}" v-on:click="soinPlayer()" v-bind:class="{AvailableHeal: readySoin, None: false}" :disabled="stopGame">Se Soigner</button>
             <button class="btn btn-primary" :style="{margin: '20px'}" v-on:click="givingUp()" :disabled="stopGame">Abandonner</button>
+        </div>
+    </div>
+
+    <div class="border" :style="{margin: '50px'}">
+        <h3>Stats:</h3>
+        <div class="row">
+            <div class="col-sm">
+                <p>Attaque: 10/20 points + {{statAttack}}%</p>
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-outline-info btn-sm" v-on:click="addAttackPower()">Add attack point</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <p>Super Attaque: 20/30 points</p>
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-outline-info btn-sm" v-on:click="">Not implemented yet</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <p>Soin: 25/40 points</p>
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-outline-info btn-sm" v-on:click="">Not implemented yet</button>
+            </div>
         </div>
     </div>
 
