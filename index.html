@@ -75,23 +75,32 @@
                 <p>Attaque: 10/20 points + {{statAttack}}%</p>
             </div>
             <div class="col-sm">
-                <button class="btn btn-outline-info btn-sm" v-on:click="addAttackPower()">Add attack point</button>
+                <button class="btn btn-outline-info btn-sm" v-on:click="addAttackPower()">Ajouter 10% d'attaque</button>
+            </div>
+            <div class="col-sm">
+                <p>Point de victoire nécessaire: 1</p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm">
-                <p>Super Attaque: 20/30 points</p>
+                <p>Super Attaque: 20/30 points + {{statSpecial}}%</p>
             </div>
             <div class="col-sm">
-                <button class="btn btn-outline-info btn-sm" v-on:click="">Not implemented yet</button>
+                <button class="btn btn-outline-info btn-sm" v-on:click="addSpecialPower()">Ajouter 10% de spécial</button>
+            </div>
+            <div class="col-sm">
+                <p>Points de victoire nécessaires: 2</p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm">
-                <p>Soin: 25/40 points</p>
+                <p>Soin: 25/40 points + {{statHeal}}%</p>
             </div>
             <div class="col-sm">
-                <button class="btn btn-outline-info btn-sm" v-on:click="">Not implemented yet</button>
+                <button class="btn btn-outline-info btn-sm" v-on:click="addHealingPower()">Ajouter 10% de soin</button>
+            </div>
+            <div class="col-sm">
+                <p>Points de victoire nécessaires: 3</p>
             </div>
         </div>
     </div>
