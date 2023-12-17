@@ -38,6 +38,8 @@ Vue.createApp({
 
             healWait: 0,
 
+            reloadEnnemi: 3,
+
         };
     },
     methods: {
@@ -171,6 +173,7 @@ Vue.createApp({
                 this.result = 'PERDU..';
                 this.msg = "> Fin de game: Défaite <";
                 this.addMsg();
+                this.reloadEnnemi = 3;
             } else if (this.vieAdversaire <= 0 && this.viePlayer > 0) {
                 this.stopGame = true;
                 this.vieAdversaire = 0;
@@ -181,6 +184,7 @@ Vue.createApp({
                 this.msg = "> Fin de game: Victoire <";
                 this.win += 1;
                 this.addMsg();
+                this.reloadEnnemi = 3;
             } else if (this.viePlayer <= 0 && this.vieAdversaire <= 0) {
                 this.stopGame = true;
                 this.viePlayer = 0;
@@ -192,6 +196,7 @@ Vue.createApp({
                 this.msg = "> Fin de game: Égalité <";
                 this.win += 0.5;
                 this.addMsg();
+                this.reloadEnnemi = 3;
             }
         },
 
@@ -204,6 +209,7 @@ Vue.createApp({
             this.result = 'ABANDON...'
             this.msg = "> Fin de game: Abandon <";
             this.addMsg();
+            this.reloadEnnemi = 3;
         },
 
         //addMsg: ajout d'un message de jeu en fonction de l'action performée
@@ -212,20 +218,24 @@ Vue.createApp({
         },
 
         //relancerGame: lancement d'une nouvelle game
+        //SI reloadEnnemi n'est pas à 0
         relancerGame() {
-            this.viePlayer = 250;
-            this.currentround = 0;
-            this.readySoin = false;
-            this.readyTour = false;
-            this.colorViePlayer = 'chartreuse';
-            this.colorVieAdversaire = 'chartreuse';
-            this.stopGame = false;
-            this.playerImg = './img/player.png';
-            this.result = '';
-            this.listMsg = ['> Nouvelle game <'];
-            this.textLancer = 'Relancer une game';
-            this.battleSound('reGame');
-            this.randomEnnemi();
+            if(this.reloadEnnemi != 0) {
+                this.viePlayer = 250;
+                this.currentround = 0;
+                this.readySoin = false;
+                this.readyTour = false;
+                this.colorViePlayer = 'chartreuse';
+                this.colorVieAdversaire = 'chartreuse';
+                this.stopGame = false;
+                this.playerImg = './img/player.png';
+                this.result = '';
+                this.listMsg = ['> Nouvelle game <'];
+                this.textLancer = 'Relancer une game';
+                this.battleSound('reGame');
+                this.randomEnnemi();
+                this.reloadEnnemi -= 1;
+            }
 
         },
 
