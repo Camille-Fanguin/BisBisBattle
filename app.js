@@ -114,6 +114,7 @@ Vue.createApp({
                 this.addMsg();
                 this.battleSound('heal');
                 this.attackPlayer();
+                this.healWait = 0;
                 this.currentround += 1;
                 this.specialReady();
                 this.soinReady();
@@ -125,9 +126,8 @@ Vue.createApp({
         //soinReady: vérification de la validité de l'utilisation du soin par Anubis
         //SI la vie d'Anubis est en dessous de 100 PV
         soinReady() {
-            if (this.viePlayer < 100 && this.healWait >= 3) {
+            if (this.viePlayer < 100 && this.healWait > 2) {
                 this.readySoin = true;
-                this.healWait = 0;
                 this.msg = "Le soin est prêt!";
                 this.addMsg();
             } else {
