@@ -29,12 +29,15 @@ Vue.createApp({
 
             pwrAttack: 0,
             statAttack: 0,
+            neededAttackPts: 1,
 
             pwrSpecial: 0,
             statSpecial: 0,
+            neededSpecialPts: 3,
 
             pwrHeal: 0,
             statHeal: 0,
+            neededHealingPts: 2,
 
             healWait: 0,
 
@@ -235,6 +238,9 @@ Vue.createApp({
                 this.battleSound('reGame');
                 this.randomEnnemi();
                 this.reloadEnnemi -= 1;
+            } else {
+                this.msg = "Impossible de relancer une nouvelle game!";
+                this.addMsg();
             }
 
         },
@@ -339,15 +345,15 @@ Vue.createApp({
         //addAttackPower(): ajoute 10% de dégâts supplémentaires sur l'attaque d'Anubis
         //SI Anubis a au moins 1 point de victoires
         addAttackPower() {
-            if(this.win >= 1) {
+            if(this.win >= this.neededAttackPts) {
                 this.pwrAttack += 0.1;
-                this.win -= 1;
+                this.win -= this.neededAttackPts;
                 this.statAttack += 10;
                 this.battleSound('addStat');
                 this.msg = "L'attaque d'Anubis a augmenté de 10%!";
                 this.addMsg();
             } else {
-                this.msg = "Anubis n'a pas gagné assez de point de victoire pour ça..";
+                this.msg = "Anubis n'a pas gagné assez de point de victoires pour ça..";
                 this.addMsg();
             }
         },
@@ -355,15 +361,15 @@ Vue.createApp({
         //addSpecialPower(): ajoute 10% de dégâts supplémentaires sur le spécial d'Anubis
         //SI Anubis a au moins 2 points de victoires
         addSpecialPower() {
-            if(this.win >= 1) {
+            if(this.win >= this.neededSpecialPts) {
                 this.pwrAttack += 0.1;
-                this.win -= 2;
+                this.win -= this.neededSpecialPts;
                 this.statAttack += 10;
                 this.battleSound('addStat');
                 this.msg = "L'attaque spéciale d'Anubis a augmenté de 10%!";
                 this.addMsg();
             } else {
-                this.msg = "Anubis n'a pas gagné assez de point de victoire pour ça..";
+                this.msg = "Anubis n'a pas gagné assez de point de victoires pour ça..";
                 this.addMsg();
             }
         },
@@ -371,15 +377,15 @@ Vue.createApp({
         //addHealingPower(): ajoute 10% sur le soin d'Anubis
         //SI Anubis a au moins 3 points de victoires
         addHealingPower() {
-            if(this.win >= 1) {
+            if(this.win >= this.neededHealingPts) {
                 this.pwrAttack += 0.1;
-                this.win -= 3;
+                this.win -= this.neededHealingPts;
                 this.statAttack += 10;
                 this.battleSound('addStat');
                 this.msg = "Le soin d'Anubis a augmenté de 10%!";
                 this.addMsg();
             } else {
-                this.msg = "Anubis n'a pas gagné assez de point de victoire pour ça..";
+                this.msg = "Anubis n'a pas gagné assez de point de victoires pour ça..";
                 this.addMsg();
             }
         },

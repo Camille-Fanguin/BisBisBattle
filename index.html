@@ -38,7 +38,7 @@
                 <h2>Tour {{currentround}}</h2>     
             </div>
             <div class="col-sm">
-                <p>{{win >= 2 ? 'Points de victoire:':'Point de victoire:'}} {{win}}</p>
+                <p>{{win >= 2 ? 'Points de victoires:':'Point de victoires:'}} {{win}}</p>
             </div>
         </div>
         
@@ -54,7 +54,7 @@
         
         <div class="border" :style="{margin: '50px'}">
             <img :src=playerImg alt="Player" height="120" width="100">
-            <p>Anubis: {{viePlayer}}PV</p>
+            <p>Anubis: {{viePlayer.toFixed(2)}}PV</p>
             <div :style="{height: '20px', width: viePlayer+'px', backgroundColor: colorViePlayer, margin: '0 auto'}" >
                 
             </div>
@@ -78,7 +78,7 @@
                 <button class="btn btn-outline-info btn-sm" v-on:click="addAttackPower()">Ajouter 10% d'attaque</button>
             </div>
             <div class="col-sm">
-                <p>Point de victoire nécessaire: 1</p>
+                <p>{{neededAttackPts >= 2 ? 'Points de victoires nécessaires:':'Point de victoires nécessaire:'}} {{neededAttackPts}}</p>
             </div>
         </div>
         <div class="row">
@@ -89,7 +89,7 @@
                 <button class="btn btn-outline-info btn-sm" v-on:click="addSpecialPower()">Ajouter 10% de spécial</button>
             </div>
             <div class="col-sm">
-                <p>Points de victoire nécessaires: 2</p>
+                <p>{{neededSpecialPts >= 2 ? 'Points de victoires nécessaires:':'Point de victoires nécessaire:'}} {{neededSpecialPts}}</p>
             </div>
         </div>
         <div class="row">
@@ -100,7 +100,7 @@
                 <button class="btn btn-outline-info btn-sm" v-on:click="addHealingPower()">Ajouter 10% de soin</button>
             </div>
             <div class="col-sm">
-                <p>Points de victoire nécessaires: 3</p>
+                <p>{{neededHealingPts >= 2 ? 'Points de victoires nécessaires:':'Point de victoires nécessaire:'}} {{neededHealingPts}}</p>
             </div>
         </div>
     </div>
