@@ -44,8 +44,7 @@ Vue.createApp({
 
             reloadEnnemi: 3,
 
-            stateMsg: false,
-            stateStats: false,
+            stateMsg: true,
 
         };
     },
@@ -396,13 +395,10 @@ Vue.createApp({
             }
         },
 
+        //hideMsg(): permet d'afficher/de cacher les messages de jeu
         hideMsg() {
             this.stateMsg = !this.stateMsg;
         },
-
-        hideStats() {
-            this.stateStats = !this.stateStats;
-        }
 
     }
 }).mount('#app');

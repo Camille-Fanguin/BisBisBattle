@@ -76,12 +76,7 @@
 
     <div class="border"></div>
 
-    <div class="d-flex justify-content-center align-items-center" :style="{margin: '20px'}">
-        <button class="btn btn-dark" :style="{margin: '20px'}" @click="hideMsg()">Messages de jeu</button>
-        <button class="btn btn-dark" :style="{margin: '20px'}" @click="hideStats()">Stats d'Anubis</button>
-    </div>
-
-    <div class="border border-info rounded" :style="{margin: '20px'}" :class="{DisplayNone: stateStats, DisplayYes: false}">
+    <div class="border border-info rounded" :style="{margin: '20px'}">
         <h3>Stats d'Anubis:</h3>
         <div class="row">
             <div class="col-sm">
@@ -118,6 +113,7 @@
         </div>
     </div>
 
+    <button class="btn btn-dark" :style="{margin: '20px'}" @click="hideMsg()">Messages de jeu</button>
     <div class="border rounded" :style="{margin: '20px'}" :class="{DisplayNone: stateMsg, DisplayYes: false}">
         <h3>Messages de jeu:</h3>
         <ul>
