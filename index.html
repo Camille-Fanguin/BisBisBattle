@@ -44,30 +44,29 @@
                 <h2>Tour {{currentround}}</h2>     
             </div>
             <div class="col-sm">
+                <button class="btn btn-dark" v-on:click="relancerGame()">{{textLancer}} ({{reloadEnnemi}})</button>
+            </div>
+            <div class="col-sm">
                 <p>{{winPts >= 2 ? 'Points de victoires:':'Point de victoires:'}} {{winPts}}</p>
                 <p>{{victory >= 2 ? 'Victoires en général:':'Victoire en général:'}} {{victory}}</p>
             </div>
         </div>
-        
-        <button class="btn btn-dark" v-on:click="relancerGame()">{{textLancer}} ({{reloadEnnemi}})</button>
-
-        <div class="border" :style="{margin: '50px'}">
-            <img :src=img :alt=nomImg height="130" width="150">
-            <p>{{nomImg}}: {{vieAdversaire.toFixed(2)}}PV</p>
-            <div :style="{height: '20px', width: vieAdversaire+'px', backgroundColor: colorVieAdversaire, margin: '0 auto'}" >
-                
+    
+        <div class="d-flex justify-content-center">
+            <div class="border border-success rounded" :style="{margin: '20px', width: '350px'}">
+                <img :src=playerImg alt="Player" height="120" width="100">
+                <p>Anubis: {{viePlayer.toFixed(2)}}PV</p>
+                <div :style="{height: '20px', width: (viePlayer/1.5)+'px', backgroundColor: colorViePlayer}" ></div>
             </div>
-        </div>
-        
-        <div class="border" :style="{margin: '50px'}">
-            <img :src=playerImg alt="Player" height="120" width="100">
-            <p>Anubis: {{viePlayer.toFixed(2)}}PV</p>
-            <div :style="{height: '20px', width: viePlayer+'px', backgroundColor: colorViePlayer, margin: '0 auto'}" >
-                
+
+            <div class="border border-danger rounded" :style="{margin: '20px', width: '350px'}">
+                <img :src=img :alt=nomImg height="120" width="130">
+                <p>{{nomImg}}: {{vieAdversaire.toFixed(2)}}PV</p>
+                <div :style="{height: '20px', width: (vieAdversaire/1.5)+'px', backgroundColor: colorVieAdversaire}" ></div>
             </div>
         </div>
 
-        <div class="d-flex justify-content-center align-items-center" :style="{margin: '20px'}">
+        <div class="d-flex justify-content-center " :style="{margin: '20px'}">
             <button class="btn btn-danger" :style="{margin: '20px'}" v-on:click="attackAdversaire()" :disabled="stopGame">Attaquer</button>
             <button class="btn btn-secondary" :style="{margin: '20px'}" v-on:click="specialAttackAdversaire()" v-bind:class="{Available: readyTour, None: false}" :disabled="stopGame">Attaque spéciale</button>
             <button class="btn btn-secondary" :style="{margin: '20px'}" v-on:click="soinPlayer()" v-bind:class="{AvailableHeal: readySoin, None: false}" :disabled="stopGame">Se Soigner</button>
@@ -78,11 +77,11 @@
     <div class="border"></div>
 
     <div class="d-flex justify-content-center align-items-center" :style="{margin: '20px'}">
-        <button class="btn btn-light" :style="{margin: '20px'}" @click="hideMsg()">Messages de jeu</button>
+        <button class="btn btn-dark" :style="{margin: '20px'}" @click="hideMsg()">Messages de jeu</button>
         <button class="btn btn-dark" :style="{margin: '20px'}" @click="hideStats()">Stats d'Anubis</button>
     </div>
 
-    <div class="border" :style="{margin: '50px'}" :class="{DisplayNone: stateStats, DisplayYes: false}">
+    <div class="border border-info rounded" :style="{margin: '20px'}" :class="{DisplayNone: stateStats, DisplayYes: false}">
         <h3>Stats d'Anubis:</h3>
         <div class="row">
             <div class="col-sm">
@@ -119,7 +118,7 @@
         </div>
     </div>
 
-    <div class="border" :style="{margin: '20px'}" :class="{DisplayNone: stateMsg, DisplayYes: false}">
+    <div class="border rounded" :style="{margin: '20px'}" :class="{DisplayNone: stateMsg, DisplayYes: false}">
         <h3>Messages de jeu:</h3>
         <ul>
             <li v-for="(text,unIndex) in listMsg" v-bind:key="text">{{text}}</li>
