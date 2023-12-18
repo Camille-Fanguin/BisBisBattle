@@ -78,48 +78,50 @@
 
     <div class="border border-info rounded" :style="{margin: '20px'}">
         <h3>Stats d'Anubis:</h3>
-        <div class="row">
-            <div class="col-sm">
-                <p>Attaque: 10/20 points + {{statAttack}}%</p>
+        <div class="text-center">
+            <div class="row">
+                <div class="col-sm">
+                    <p>Attaque: 10/20 points + {{statAttack}}%</p>
+                </div>
+                <div class="col-sm">
+                    <button class="btn btn-outline-info btn-sm" v-on:click="addAttackPower()">Ajouter 10% d'attaque</button>
+                </div>
+                <div class="col-sm">
+                    <p>{{neededAttackPts >= 2 ? 'Points de victoires nécessaires:':'Point de victoires nécessaire:'}} {{neededAttackPts}}</p>
+                </div>
             </div>
-            <div class="col-sm">
-                <button class="btn btn-outline-info btn-sm" v-on:click="addAttackPower()">Ajouter 10% d'attaque</button>
+            <div class="row">
+                <div class="col-sm">
+                    <p>Super Attaque: 20/30 points + {{statSpecial}}%</p>
+                </div>
+                <div class="col-sm">
+                    <button class="btn btn-outline-info btn-sm" v-on:click="addSpecialPower()">Ajouter 10% de spécial</button>
+                </div>
+                <div class="col-sm">
+                    <p>{{neededSpecialPts >= 2 ? 'Points de victoires nécessaires:':'Point de victoires nécessaire:'}} {{neededSpecialPts}}</p>
+                </div>
             </div>
-            <div class="col-sm">
-                <p>{{neededAttackPts >= 2 ? 'Points de victoires nécessaires:':'Point de victoires nécessaire:'}} {{neededAttackPts}}</p>
+            <div class="row">
+                <div class="col-sm">
+                    <p>Soin: 25/40 points + {{statHeal}}%</p>
+                </div>
+                <div class="col-sm">
+                    <button class="btn btn-outline-info btn-sm" v-on:click="addHealingPower()">Ajouter 10% de soin</button>
+                </div>
+                <div class="col-sm">
+                    <p>{{neededHealingPts >= 2 ? 'Points de victoires nécessaires:':'Point de victoires nécessaire:'}} {{neededHealingPts}}</p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm">
-                <p>Super Attaque: 20/30 points + {{statSpecial}}%</p>
-            </div>
-            <div class="col-sm">
-                <button class="btn btn-outline-info btn-sm" v-on:click="addSpecialPower()">Ajouter 10% de spécial</button>
-            </div>
-            <div class="col-sm">
-                <p>{{neededSpecialPts >= 2 ? 'Points de victoires nécessaires:':'Point de victoires nécessaire:'}} {{neededSpecialPts}}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm">
-                <p>Soin: 25/40 points + {{statHeal}}%</p>
-            </div>
-            <div class="col-sm">
-                <button class="btn btn-outline-info btn-sm" v-on:click="addHealingPower()">Ajouter 10% de soin</button>
-            </div>
-            <div class="col-sm">
-                <p>{{neededHealingPts >= 2 ? 'Points de victoires nécessaires:':'Point de victoires nécessaire:'}} {{neededHealingPts}}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm">
-                <p>PV: 250PV + {{statPV}}PV</p>
-            </div>
-            <div class="col-sm">
-                <button class="btn btn-outline-info btn-sm" v-on:click="addPVPower()">Ajouter 10PV</button>
-            </div>
-            <div class="col-sm">
-                <p>{{neededPVPts >= 2 ? 'Points de victoires nécessaires:':'Point de victoires nécessaire:'}} {{neededPVPts}}</p>
+            <div class="row">
+                <div class="col-sm">
+                    <p>PV: 250PV + {{statPV}}PV</p>
+                </div>
+                <div class="col-sm">
+                    <button class="btn btn-outline-info btn-sm" v-on:click="addPVPower()">Ajouter 10PV</button>
+                </div>
+                <div class="col-sm">
+                    <p>{{neededPVPts >= 2 ? 'Points de victoires nécessaires:':'Point de victoires nécessaire:'}} {{neededPVPts}}</p>
+                </div>
             </div>
         </div>
     </div>
