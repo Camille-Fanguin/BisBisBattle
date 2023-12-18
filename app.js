@@ -43,6 +43,9 @@ Vue.createApp({
 
             reloadEnnemi: 3,
 
+            stateMsg: false,
+            stateStats: false,
+
         };
     },
     methods: {
@@ -389,6 +392,14 @@ Vue.createApp({
                 this.addMsg();
             }
         },
+
+        hideMsg() {
+            this.stateMsg = !this.stateMsg;
+        },
+
+        hideStats() {
+            this.stateStats = !this.stateStats;
+        }
 
     }
 }).mount('#app');

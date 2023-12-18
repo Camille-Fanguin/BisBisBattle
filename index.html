@@ -25,6 +25,12 @@
         .None {
             background-color: dimgray;
         }
+        .DisplayNone {
+            display:none;
+        }
+        .DisplayYes {
+            display:block;
+        }
     </style>
 
     </head>
@@ -68,8 +74,15 @@
         </div>
     </div>
 
-    <div class="border" :style="{margin: '50px'}">
-        <h3>Stats:</h3>
+    <div class="border"></div>
+
+    <div class="d-flex justify-content-center align-items-center" :style="{margin: '20px'}">
+        <button class="btn btn-light" :style="{margin: '20px'}" @click="hideMsg()">Messages de jeu</button>
+        <button class="btn btn-dark" :style="{margin: '20px'}" @click="hideStats()">Stats d'Anubis</button>
+    </div>
+
+    <div class="border" :style="{margin: '50px'}" :class="{DisplayNone: stateStats, DisplayYes: false}">
+        <h3>Stats d'Anubis:</h3>
         <div class="row">
             <div class="col-sm">
                 <p>Attaque: 10/20 points + {{statAttack}}%</p>
@@ -105,7 +118,7 @@
         </div>
     </div>
 
-    <div class="border" :style="{margin: '20px'}">
+    <div class="border" :style="{margin: '20px'}" :class="{DisplayNone: stateMsg, DisplayYes: false}">
         <h3>Messages de jeu:</h3>
         <ul>
             <li v-for="(text,unIndex) in listMsg" v-bind:key="text">{{text}}</li>
