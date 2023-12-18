@@ -111,6 +111,17 @@
                 <p>{{neededHealingPts >= 2 ? 'Points de victoires nécessaires:':'Point de victoires nécessaire:'}} {{neededHealingPts}}</p>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm">
+                <p>PV: 250PV + {{statPV}}PV</p>
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-outline-info btn-sm" v-on:click="addPVPower()">Ajouter 10PV</button>
+            </div>
+            <div class="col-sm">
+                <p>{{neededPVPts >= 2 ? 'Points de victoires nécessaires:':'Point de victoires nécessaire:'}} {{neededPVPts}}</p>
+            </div>
+        </div>
     </div>
 
     <button class="btn btn-dark" :style="{margin: '20px'}" @click="hideMsg()">Messages de jeu</button>

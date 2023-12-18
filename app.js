@@ -40,6 +40,10 @@ Vue.createApp({
             statHeal: 0,
             neededHealingPts: 2,
 
+            pwrPV: 0,
+            statPV: 0,
+            neededPVPts: 4,
+
             healWait: 0,
 
             reloadEnnemi: 3,
@@ -229,7 +233,7 @@ Vue.createApp({
         //SI reloadEnnemi n'est pas à 0
         relancerGame() {
             if(this.reloadEnnemi != 0) {
-                this.viePlayer = 250;
+                this.viePlayer = 250 + this.pwrPV;
                 this.currentround = 0;
                 this.readySoin = false;
                 this.readyTour = false;
@@ -389,6 +393,23 @@ Vue.createApp({
                 this.battleSound('addStat');
                 this.msg = "Le soin d'Anubis a augmenté de 10%!";
                 this.addMsg();
+            } else {
+                this.msg = "Anubis n'a pas gagné assez de point de victoires pour ça..";
+                this.addMsg();
+            }
+        },
+
+        //addPVPower(): ajoute 10PV à la vie d'Anubis
+        //SI Anubis a au moins 4 points de victoires
+        addPVPower() {
+            if(this.winPts >= this.neededPVPts) {
+                this.pwrPV += 10;
+                this.winPts -= this.neededPVPts;
+                this.statPV += 10;
+                this.battleSound('addStat');
+                this.msg = "Les PV d'Anubis ont augmenté de 10 points!";
+                this.addMsg();
+                this.viePlayer += this.pwrPV;
             } else {
                 this.msg = "Anubis n'a pas gagné assez de point de victoires pour ça..";
                 this.addMsg();
